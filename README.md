@@ -9,8 +9,8 @@
 
 sshd is the OpenSSH server process. It listens to incoming connections using the SSH protocol and acts as the server for the protocol. It handles user authentication, encryption, terminal connections, file transfers, and tunneling.
 
-**VPS 安装OS(linux)时，自动安装了**
-**macOS 用 brew 安装**
+**VPS 安装OS(linux)时，自动安装了；**
+**macOS 用 brew 安装。**
 
 ## configuration file
 
