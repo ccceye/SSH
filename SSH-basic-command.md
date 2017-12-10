@@ -1,4 +1,4 @@
-# SSH
+# SSH BASIC and COMMAND
 ## SSH (SECURE SHELL)
 
 https://www.ssh.com
