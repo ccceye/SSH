@@ -73,7 +73,7 @@ After authenticating to the remote server, the contents of the remote directory 
 
 Some of the most important command-line options for the OpenSSH client are:
 
--1 Use protocol version 1 only.
+*-1* Use protocol version 1 only.
 
 -2 Use protocol version 2 only.
 
