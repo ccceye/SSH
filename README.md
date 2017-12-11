@@ -50,7 +50,7 @@ brew install sshfs
 
 该命令就将远程主机 pi 用户的主目录挂载到本地主目录下的 Pi 文件夹.
 
-
+`umount ~/pi`
 
 ### How to use sshfs (Secure Shell FileSystem) to Mount Remote Directories Locally
 
@@ -84,7 +84,7 @@ fusermount password
 
 If the password is correct then the prompt is returned to the user as follows.password okay
 
-Where the option ~/Pi is the folder on the local machine in the home directory where the remote directory will be mounted. One has the option of writing the full path to the home directory or using tilde (~), to refer to home directory. Once the remote directory is mounted, the folder on which the contents of the remote directory is mounted can be seen on the list of devices:
+Where the option \~/Pi is the folder on the local machine in the home directory where the remote directory will be mounted. One has the option of writing the full path to the home directory or using tilde (\~), to refer to home directory. Once the remote directory is mounted, the folder on which the contents of the remote directory is mounted can be seen on the list of devices:
 
 mounted_gui To view the contents of the remote directory, the user now opens the folder just like the local folders on the local machine. Remote files To unmount the remote directory, run the command:
 
