@@ -40,6 +40,65 @@ https://osxfuse.github.io
 brew cask install osxfuse   ;...OK
 brew install sshfs
 ```
+**Example **
+
+### How to use sshfs (Secure Shell FileSystem) to Mount Remote Directories Locally
+
+>Sshfs is a file system for operating systems that have FUSE (Filesystem in Userspace) implementation. Examples of such operating systems are Linux, Mac OS X and FreeBSD but not limited to these. This is a great tool as it enable a user to mount remote directories on the local machine securely. The SSH protocol encrypts the connection between the local and remote machine. This makes it difficult for a third party to see the files being exchanged between the two machines on the network.
+
+>Install sshfs in macOS
+```
+brew cask install osxfuse
+brew install sshfs
+```
+
+Running the sudo or su command in Linux will prompt for a password. Most newbies are often confused since no characters are displayed when the user inputs the password. This is a security feature implemented on Linux. Once installed it is time, connect to a remote host and mount the directory, you need. The first step is to create is a directory on the local machine where the remote file will be mounted. In this example, the folder is created in the home directory. To create the directory run the command
+
+>$ mkdir name_of_directory
+
+e.g
+
+`$ mkdir Pi`
+
+The other option is to create a new folder in the home directory and name it Pi. Note in this case Pi is my desired name and a user has the option of naming it as they deem fit, but it is always preferable to use a descriptive name. To mount the the remote directory
+
+`$ sshfs -o idmap=user user@remotehost:[dir] mountpoint`
+
+The option: -o idmap=user only translates the UID( User ID ) of the connecting user. For example to mount home directory of user pi on the LAN with IP address 10.42.0.47 the command is run as follows.
+
+`$ sshfs -o idmap=user pi@10.42.0.47:/home/pi ~/Pi`
+
+This command will prompt for the password of the remote user.
+
+fusermount password
+
+If the password is correct then the prompt is returned to the user as follows.password okay
+
+Where the option ~/Pi is the folder on the local machine in the home directory where the remote directory will be mounted. One has the option of writing the full path to the home directory or using tilde (~), to refer to home directory. Once the remote directory is mounted, the folder on which the contents of the remote directory is mounted can be seen on the list of devices:
+
+mounted_gui To view the contents of the remote directory, the user now opens the folder just like the local folders on the local machine. Remote files To unmount the remote directory, run the command:
+
+`$ fusermount -u mountpoint`
+
+In our example, run the command as follows.
+
+`$ fusermount -u ~/Pi`
+
+Sometimes the errors in network connection may cause the following error:
+
+>$ fuse: bad mount point `mountpoint`: Transport endpoint is not connected
+
+To solve this issue the following steps should be followed:
+
+`$ umount -l mountpoint`
+
+In our example,
+
+`$ umount -l ~/Pi`
+
+then run the mount command once again.
+
+`$ sshfs -o idmap=user pi@10.42.0.47:/home/pi ~/Pi`
 
 ---
 
@@ -188,5 +247,6 @@ ssh -R localhost:2000:localhost:3000 root@103.59.22.17
 curl http://localhost:3000
 Hello Fundebug
 ```
+
 
 
