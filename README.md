@@ -25,6 +25,22 @@ sshd is the OpenSSH server process. It listens to incoming connections using the
 
 
 ---
+# 最佳的SSH命令
+
+## 通过SSH挂载目录/文件系统
+>允许你跨网络安全挂载一个目录
+```
+sshfs 用户名@远程主机:/path/to/folder /path/to/mount/point
+```
+>**This Office Website:**
+https://osxfuse.github.io
+>在苹果macOS中，用brew安装：先装osxfuse(It allows you to extend macOS's native file handling capabilities via third-party file systems), 后装sshfs.
+```
+brew cask install osxfuse   ;...OK
+brew install sshfs
+```
+
+---
 
 # SSH端口转发
 
@@ -171,6 +187,8 @@ ssh -R localhost:2000:localhost:3000 root@103.59.22.17
 curl http://localhost:3000
 Hello Fundebug
 ```
+
+
 
 
 
