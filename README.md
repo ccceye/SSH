@@ -40,7 +40,17 @@ https://osxfuse.github.io
 brew cask install osxfuse   ;...OK
 brew install sshfs
 ```
-**Example **
+### Example:
+
+`$ sshfs -o idmap=user user@hostname:/home/user ~/Remote`
+
+比如下面这条命令:
+
+`$ sshfs -o idmap=user pi@10.42.0.47:/home/pi ~/Pi`
+
+该命令就将远程主机 pi 用户的主目录挂载到本地主目录下的 Pi 文件夹.
+
+
 
 ### How to use sshfs (Secure Shell FileSystem) to Mount Remote Directories Locally
 
