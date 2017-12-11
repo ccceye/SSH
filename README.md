@@ -34,6 +34,7 @@ sshfs 用户名@远程主机:/path/to/folder /path/to/mount/point
 ```
 >**This Office Website:**
 https://osxfuse.github.io
+
 >在苹果macOS中，用brew安装：先装osxfuse(It allows you to extend macOS's native file handling capabilities via third-party file systems), 后装sshfs.
 ```
 brew cask install osxfuse   ;...OK
@@ -187,9 +188,5 @@ ssh -R localhost:2000:localhost:3000 root@103.59.22.17
 curl http://localhost:3000
 Hello Fundebug
 ```
-
-
-
-
 
 
