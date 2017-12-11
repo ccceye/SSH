@@ -145,7 +145,7 @@ ssh -R 2000:192.168.0.100:3000 root@103.59.22.17
 # 在本地主机A1登陆远程云主机B1，并进行动态端口转发
 ssh -D localhost:7001 root@103.59.22.17
 ```
->而在本地发起的请求，需要由Socket代理(Socket Proxy)转发到SSH绑定的2000端口。以Safari浏览器为例，配置Socket代理需要找到Preferences>Advanced>Proxies->Socks:
+>而在本地发起的请求，需要由Socket代理(Socket Proxy)转发到SSH绑定的7001端口。以Safari浏览器为例，配置Socket代理需要找到Preferences>Advanced>Proxies->Socks:
 ![ScreenShot01.png](./ScreenShot01.png) 
 ![ScreenShot02.png](./ScreenShot02.png)
 >这样的话，Safari浏览器发起的请求都会转发到7001端口，然后通过SSH转发到真正地请求地址。若Node.js服务运行在远程云主机B1上，则在Safari中访问localhost:3000即可以访问。如果主机B1能够访问外网的话，则可以科学上网……
