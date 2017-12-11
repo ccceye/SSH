@@ -143,13 +143,13 @@ ssh -R 2000:192.168.0.100:3000 root@103.59.22.17
 >这时，通过动态端口转发，可以将在本地主机A1发起的请求，转发到远程主机B1，而由B1去真正地发起请求。
 ```
 # 在本地主机A1登陆远程云主机B1，并进行动态端口转发
-ssh -D localhost:2000 root@103.59.22.17
+ssh -D localhost:7001 root@103.59.22.17
 ```
->而在本地发起的请求，需要由Socket代理(Socket Proxy)转发到SSH绑定的2000端口。以Firefox浏览器为例，配置Socket代理需要找到首选项>高级>网络>连接->设置:
+>而在本地发起的请求，需要由Socket代理(Socket Proxy)转发到SSH绑定的2000端口。以Safari浏览器为例，配置Socket代理需要找到Preferences>Advanced>Proxies->Socks:
+![ScreenShot01.png](./ScreenShot01.png) 
 
 
-
->这样的话，Firefox浏览器发起的请求都会转发到2000端口，然后通过SSH转发到真正地请求地址。若Node.js服务运行在远程云主机B1上，则在Firefox中访问localhost:3000即可以访问。如果主机B1能够访问外网的话，则可以科学上网……
+>这样的话，Safari浏览器发起的请求都会转发到7001端口，然后通过SSH转发到真正地请求地址。若Node.js服务运行在远程云主机B1上，则在Safari中访问localhost:3000即可以访问。如果主机B1能够访问外网的话，则可以科学上网……
 
 ## 链式端口转发
 
