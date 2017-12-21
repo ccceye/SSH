@@ -91,7 +91,7 @@ $ ssh-keygen -t ed25519 -C "michael@linux-audit.com"
  
  When using this newer type of key, you can configure to use it in your **local SSH configuration file (~/.ssh/config)**. Defining the key file is done with the IdentityFile option.
  
- ``
+```
 Host [name]
 HostName [hostname]
 User [your-username]
