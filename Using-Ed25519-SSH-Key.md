@@ -1,19 +1,19 @@
 # Using Ed25519 for OpenSSH keys (instead of DSA/RSA/ECDSA)
 
 
-### Introduction into Ed25519
+## Introduction into Ed25519
 
-OpenSSH 6.5 added support for Ed25519 as a public key type. It is using an elliptic curve signature scheme, which offers better security than ECDSA and DSA. At the same time it also has good performance. This type of keys may be used for user and host keys. With this in mind, it is great to be used together with OpenSSH. In this article we have a look at this new key type.
+OpenSSH 6.5 added support for **Ed25519** as a public key type. It is using an elliptic curve signature scheme, which offers better security than ECDSA and DSA. At the same time it also has good performance. This type of keys may be used for user and host keys. With this in mind, it is great to be used together with OpenSSH. In this article we have a look at this new key type.
 
-### DSA or RSA
+## DSA or RSA
 
 Many forum threads have been created regarding the choice between DSA or RSA. DSA is being limited to 1024 bits, as specified by FIPS 186-2. This is also the default length of ssh-keygen. While the length can be increased, it may not be compatible with all clients. So it is common to see RSA keys, which are often also used for signing. With Ed25519 now available, the usage for both will slowly decrease.
 
-### Configuring the server
+## Configuring the server
 
-The first thing to check is if your current OpenSSH package is up-to-date. You will need at least version 5.6 of OpenSSH.
+The first thing to check is if your current OpenSSH package is up-to-date. You will need at least **version 5.6 of OpenSSH**.
 
-### Create SSH host keys
+## Create SSH host keys
 
 ```
 [root@arch ~]# cd /etc/ssh
@@ -39,17 +39,19 @@ The key's randomart image is:
 +-----------------+
 ```
 
-### Change SSH configuration (server)
+## Change SSH configuration (server)
 
-Next step is changing the sshd_config file. Add the new host key type:
+Next step is changing the **sshd_config file**. Add the new host key type:
 
 `HostKey /etc/ssh/ssh_host_ed25519_key`
 
-Remove any of the other HostKey settings that are defined.
+**Remove** any of the other HostKey settings that are defined.
 
-### Client Configuration
+## Client Configuration
 
-After configuring the server, it is time to do the client. We have to create a new key first. Make sure that your ssh-keygen is also up-to-date, to support the new key type. Note: the tilde (~) is an alias for your home directory and expanded by your shell.
+After configuring the server, it is time to do the client. We have to create a new key first. Make sure that your ssh-keygen is also up-to-date, to support the new key type. 
+
+*Note: the tilde (~) is an alias for your home directory and expanded by your shell.*
 
 ```
 $ ssh-keygen -t ed25519 -C "michael@linux-audit.com"
@@ -75,11 +77,11 @@ $ ssh-keygen -t ed25519 -C "michael@linux-audit.com"
  +-----------------+
  ```
  
- Optional step: Check the key before copying it.
+ **Optional step**: Check the key before copying it.
  
  `ssh-keygen -l -f ~/.ssh/id_ed25519`
  
- If that looks good, copy it to the destination host.
+ If that looks good, **copy it to the destination host**.
  
  `ssh-copy-id -i ~/.ssh/id_ed25519.pub michael@192.168.1.251`
  
@@ -87,7 +89,7 @@ $ ssh-keygen -t ed25519 -C "michael@linux-audit.com"
  
  `$ ssh -i ~/.ssh/id_ed25519 michael@192.168.1.251 Enter passphrase for key ‘~/.ssh/id_ed25519’:`
  
- When using this newer type of key, you can configure to use it in your local SSH configuration file (~/.ssh/config). Defining the key file is done with the IdentityFile option.
+ When using this newer type of key, you can configure to use it in your **local SSH configuration file (~/.ssh/config)**. Defining the key file is done with the IdentityFile option.
  
  ``
 Host [name]
