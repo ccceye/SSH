@@ -1,5 +1,7 @@
 # screen 命令简单用法
 
+screen是一款由GNU计划开发的用于命令行终端切换的自由软件，实现全屏窗口管理的功能，能够混合多个工作到一个终端上。一般linux系统中自带有screen命令.
+
 现在很多时候我们的开发环境都已经部署到云端了，直接通过SSH来登录到云端服务器进行开发测试以及运行各种命令，一旦网络中断，通过SSH运行的命令也会退出，这个发让人发疯的。
 
 好在有screen命令，它可以解决这些问题。我使用screen命令已经有三年多的时间了，感觉还不错。
@@ -9,6 +11,34 @@
 ```
 $ screen -S screen_session_name
 ```
+
+通过SSH登远程服务器后，直接在命令行下运行以下命令新建一个screen会话：
+
+`screen`
+
+也可以指定会话的名称，以下即创建以noalgo为名称的会话：
+
+`screen -S loli`
+
+也可以在新建会话时指定要运行的程序，以下运行了vi编辑器，注意此时退出vi编辑器即表示退出了screen会话。
+
+`screen -S loli vi helloworld.c`
+
+新建会话后即进入了screen的世界，在这里做的事情和在普通的shell中的事情没有什么区别，只是此时的会话是可以进行恢复的，即使发生网络中断，也可以通过再次运行screen命令回到刚才的会话中，而且，再次回来时屏幕上显示的是刚才的画面，而如果程序动态运行时，此时显示最新的结果。
+
+**如果有事需要离开，而服务器上的程序需要同时在运行，此时可以通过命令d分离会话。在screen会话中进行的操作都是以ctrl+a开始，所以分离时需要先按下ctrl+a，然后再按d.**
+
+此时会回到原先的SSH窗口，就可以随意关掉SSH去干其他事情了。
+
+当要回去的时候可以先通过SSH进行登录，然后运行以下命令查看系统中已有的screen会话：`screen -list(ls)` 得到的结果类似为:
+```
+[Loli@LoliconServer ~]$ screen -list
+There is a screen on:
+	  8530.loli	(Detached)
+ 1 Socket in /var/run/screen/S-Loli.
+ ```
+
+然后可以通过`screen -r 8530`回到会话中，也可以输入名字：`screen -r loli`
 
 ## 将当前Screen Session放到后台
 
